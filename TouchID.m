@@ -24,6 +24,9 @@ RCT_EXPORT_METHOD(authenticate: (NSString *)reason
 {
     LAContext *context = [[LAContext alloc] init];
     NSError *error;
+
+    // Remove "Enter Password" option after failing authentication
+    context.localizedFallbackTitle = @"";
     
     // Device has TouchID
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
